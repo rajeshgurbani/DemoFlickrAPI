@@ -1,0 +1,15 @@
+<h1 align="center">Friend's Feed</h1>
+<div align="center">
+	<%= link_to "<input type='button' value='Click to show users Feed' />".html_safe, :controller => "/web",:action => "user_feed", :id => "#{params[:id]}" %>
+	<%= link_to "<input type='button' value='BACK to main screen' />".html_safe, "/", :method => "get", :class => "button_view" %>
+</div><br/>
+<% if @user_friend_feed.present? %>
+	<% @user_friend_feed.each {|key, value| %>
+		<div class="image_view_container">
+			<%= "<#{value["content"][/img.*?src="(.*?)"/i]} />".html_safe %>
+			<h4><%= value["author"]["name"][0] %></h4>
+		</div>
+	<% } %>
+<% else %>
+	<div>No Data Found !! </div>
+<% end %>

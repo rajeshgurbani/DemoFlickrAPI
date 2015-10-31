@@ -1,0 +1,12 @@
+<h1 align="center">Demo Flickr App</h1>
+<% if @public_feed.present? %>
+	<% @public_feed.each {|key, value| %>
+		<div class="image_view_container">
+			<%= "<#{value["content"][/img.*?src="(.*?)"/i]} />".html_safe %>
+			<h4><%= link_to "#{value["author"]["name"][0]}", :controller => "/web",:action => "user_feed", :id => "#{value["author"]["nsid"][0]}" %>
+			</h4>
+		</div>
+	<% } %>
+<% else %>
+	<div>No Data Found !! </div>
+<% end %>
